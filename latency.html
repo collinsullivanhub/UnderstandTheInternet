@@ -6,13 +6,13 @@
   .parent{
     background-color: hsla(100%, 100%, 0.5);
     height: 200px;
-    width: 2000px;
+    width: 3000px;
   }
   .child{
     background-color: black;
     height: 25%;
     width: 25%;
-    transition: transform 1s ease-in-out;
+    transition: transform 1s cubic-bezier(0.14, 0.17, 0.66, 0.64);
   }
   .parent:hover .child{
     transform: translateX(100%);
@@ -22,7 +22,7 @@
 </head>
 
 <body>
-<img src="latency.png" alt="latency_pic_here" width="800" height="280">
+<img src="latency.png" alt="latency_pic_here" width="800" height="220">
 <p>
 Although it may seem like magic, when you send data over a network from one point to another it is not instant.
 This is because we are limited to the speed of light, roughly 300 million meters per second. While that is quite fast,
@@ -42,16 +42,22 @@ Since the design of peering multiple networks together was adopted, network traf
 networks, called Autonomous Systems (more on this in the BGP section), to reach it's destination. Let's look at an example!
 </p>
 <p>
-Example: Traffic to a SAAS Provider<br>
+Example: Traffic to a SAAS Application<br>
 
-Let's say you are a lucky work-from-home user in Miami who needs to connect to your Google Drive folder online
+Let's say you are a lucky work-from-home user in Tampa who needs to connect to your Microsoft Sharepoint folder online
 to access a Powerpoint you just got told you have to present tomorrow... yay. The network path you will likely
-take is out your local home modem/router to your service provider then either to a VPN endpoint configured by your
-company or perhaps be split tunneled (bypass VPN) to go directly to the SAAS provider's AS. Note that by this point we
-have likely already had our traffic routed to four or five different routers upstream (on the way to target). Once the
-traffic enters Google's AS, you first hit a firewall which hands you off to a load balancer, then a front-end proxy server, which then
-routes your request to the appropriate server cluster. All in all, you have likely traveled some 13-15 hops to your target.
-But here's the catch, it also has to travel back to you!
+take is out your local home modem/router to your service provider, across any upsteam providers (perhaps to a VPN endpoint configured by your
+company or perhaps be split tunneled, bypassing the VPN), and finally into the Autonomous System hosting the application web server. Note that by this point we
+have likely already had our traffic routed through four or five different service providers upstream (on the way to target server). Once the
+traffic enters Microsoft's AS (Autonomous System), you likely will first hit a security device or two (Firewall, IDS/IPS), which will hand you off to a load balancer, then a front-end proxy server, which then
+routes your request to the appropriate web server. All in all, you have likely traveled some 13-15 "hops", which is just slang for separate network segment,
+to your target. But here's the catch, it also has to travel back to you!
+</p>
+<h2>One-Way vs End-to-End Latency</h2>
+<p>
+Commonly, network operators, enthusiats, deliquents, and administrators misuse the term latency. Before I understood networking, I always
+associated latency, jitter, delay, etc. as all the same thing. Network slang has even been birthed out of this confusion with words like,
+"lag" and "In reality,
 </p>
 <p>
 Each one of these routers and middleboxes (non routing devices your traffic passes through like a proxy for firewall, or
@@ -60,11 +66,19 @@ delay and queing delay. Traveling through all of these devices adds latency to y
 travel through them to your destination. For this reason, network operators try to design their networks to reduce latency
 as much as possible.
 </p>
-<p>As we can see below, each </p>
+<p></p>
 <p></p>
 <div class ="parent">
   <div class = "child"></div>
 </div>
-
+<div class ="parent">
+  <div class = "child"></div>
+</div>
+<div class ="parent">
+  <div class = "child"></div>
+</div>
+<p>
+Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+</p>
 </body>
 </html>
