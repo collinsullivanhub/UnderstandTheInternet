@@ -1,6 +1,7 @@
 # UnderstandTheInternet
-Learn and understand how the internet and its components work.
 
-This is a public site hosted for free at:
+Learn more about the internet and networks!
 
-https://understand-the-internet-on2m6.ondigitalocean.app/
+This is a public site hosted at:
+
+understandtheinter.net
