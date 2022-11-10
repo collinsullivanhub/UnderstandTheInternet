@@ -1,64 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 </head>
 <img src="latency.png" alt="latency_pic_here" width="800" height="220">
-<body>
+  <body>
 
-<p> </p>
-<p> </p>
-<p> </p>
-<h2>Introduction to Latency</h2>
-<p>
-Although it may seem like magic, when you send data over a network from one point to another it is not instant.
-This is because we are limited to the speed of light, roughly 300 million meters per second. While that is quite fast,
-let's pretend we have a router in the DE-CIX New York internet exchange point (IXP) with an optical cable running perfectly to a router in Dubai, which is a total
-distance of ~11,001km. The fastest one bit of data in New York, manifested in reality most commonly as light sent through optical fiber,
-can travel to the receiving photodiode (diode which produces current when it absorbs photons. The current is then converted into voltage with a transimpedense amflifer, and then to binary with a DAC)
- of the optic in Dubai is ~36.7 ms due to the laws of physics. Realistically, it would be closer to ~40ms if you take the refractive index of fiber into account... more on that optical section.
-</p>
-<p>
-While this seems very fast (and it is compared to mailing a letter), we do not have perfect point to point links
-between all devices, servers, and nodes on the internet. That would not only be physically very messy but logistically
-impossible. For that reason, the internet is broken up into various sub-networks controlled by different businesses,
-organizations, governments, militaries, and even single individuals who manage and connect their networks to each other,
-often through service providers or various infrastructure providers.
-</p>
+    <h2>Introduction to Latency</h2>
 
-<p>
-Since the design of peering multiple networks together was adopted, network traffic often passes through several
-networks, called Autonomous Systems (more on this in the BGP section), to reach it's destination. Let's look at an example!
-</p>
-<p><i>
-Example: Traffic to a SAAS Application</i></p>
-<p>
-Let's say you are a lucky work-from-home user in Tampa who needs to connect to your Microsoft Sharepoint folder online
-to access a Powerpoint you just got told you have to present tomorrow... yay. The network path you will likely
-take is out your local home modem/router to your service provider, across any upsteam providers (perhaps to a VPN endpoint configured by your
-company or perhaps be split tunneled, bypassing the VPN), and finally into the Autonomous System hosting the application web server. Note that by this point we
-have likely already had our traffic routed through four or five different service providers upstream (on the way to target server). Once the
-traffic enters Microsoft's AS (Autonomous System), you likely will first hit a security device or two (Firewall, IDS/IPS), which will hand you off to a load balancer, then a front-end proxy server, which then
-routes your request to the appropriate web server. All in all, you have likely traveled some 13-15 "hops", which is just slang for separate network segment,
-to your target. But here's the catch, it also has to travel back to you!
-</p>
-<h2>One-Way vs Round-Trip Latency</h2>
-<p>
-Commonly, network operators, enthusiats, deliquents, and administrators misuse the term latency. Before I understood networking, I always
-associated latency, jitter, delay, etc. as all the same thing. Latency explicitly means the time spent sending data from one hop to another,
-whether that be one or fifty hops away. The total time for the traffic to travel from the source to the destination is known as one-way latency.
-Therefore, the time it takes for network traffic to be sent to the target and receive a reply is the Round-Trip Latency.
-</p>
-<p>
-In our example above, each device the traffic passes through takes time, be it milliseconds or microseconds, to process your traffic
-and send it to the appropriate destination. This is known as processing delay and queing delay. This constributes to the total one-way latency value.
-For this reason, network operators try to design their networks to reduce latency as much as possible which is embodied as having as few network
-segments as possible that traffic has to traverse, to investing in high-performant devices with a dedicated chip set for the network function being performed.
-</p>
+    <p>
+    Although it may seem like magic, when you send data over a network from one point to another it is not instant.
+    This is because we are limited to the speed of light, roughly 300 million meters per second. While that is quite fast,
+    let's pretend we have a router in the DE-CIX New York internet exchange point (IXP) with an optical cable running perfectly to a router in Dubai, which is a total
+    distance of ~11,001km. The fastest one bit of data in New York, manifested in reality most commonly as light sent through optical fiber,
+    can travel to the receiving photodiode (diode which produces current when it absorbs photons. The current is then converted into voltage with a transimpedense amflifer, and then to binary with a DAC)
+     of the optic in Dubai is ~36.7 ms due to the laws of physics. Realistically, it would be closer to ~40ms if you take the refractive index of fiber into account... more on that optical section.
+    </p>
 
-<h2>How is Latency measured?</h2>
-<p>
+    <p>
+    While this seems very fast (and it is compared to mailing a letter), we do not have perfect point to point links
+    between all devices, servers, and nodes on the internet. That would not only be physically very messy but logistically
+    impossible. For that reason, the internet is broken up into various sub-networks controlled by different businesses,
+    organizations, governments, militaries, and even single individuals who manage and connect their networks to each other,
+    often through service providers or various infrastructure providers.
+    </p>
 
-</p>
-</body>
+    <p>
+    Since the design of peering multiple networks together was adopted, network traffic often passes through several
+    networks, called Autonomous Systems (more on this in the BGP section), to reach it's destination. Let's look at an example!
+    </p>
+
+    <p><i>Example: Traffic to a SAAS Application</i></p>
+
+    <p>
+    Let's say you are a lucky work-from-home user in Tampa who needs to connect to your Microsoft Sharepoint folder online
+    to access a Powerpoint you just got told you have to present tomorrow... yay. The network path you will likely
+    take is out your local home modem/router to your service provider, across any upsteam providers (perhaps to a VPN endpoint configured by your
+    company or perhaps be split tunneled, bypassing the VPN), and finally into the Autonomous System hosting the application web server. Note that by this point we
+    have likely already had our traffic routed through four or five different service providers upstream (on the way to target server). Once the
+    traffic enters Microsoft's AS (Autonomous System), you likely will first hit a security device or two (Firewall, IDS/IPS), which will hand you off to a load balancer, then a front-end proxy server, which then
+    routes your request to the appropriate web server. All in all, you have likely traveled some 13-15 "hops", which is just slang for separate network segment,
+    to your target. But here's the catch, it also has to travel back to you!
+    </p>
+
+    <h2>One-Way vs Round-Trip Latency</h2>
+
+    <p>
+    Commonly, network operators, enthusiats, deliquents, and administrators misuse the term latency. Before I understood networking, I always
+    associated latency, jitter, delay, etc. as all the same thing. Latency explicitly means the time spent sending data from one hop to another,
+    whether that be one or fifty hops away. The total time for the traffic to travel from the source to the destination is known as one-way latency.
+    Therefore, the time it takes for network traffic to be sent to the target and receive a reply is the Round-Trip Latency.
+    </p>
+
+    <p>
+    In our example above, each device the traffic passes through takes time, be it milliseconds or microseconds, to process your traffic
+    and send it to the appropriate destination. This is known as processing delay and queing delay. This constributes to the total one-way latency value.
+    For this reason, network operators try to design their networks to reduce latency as much as possible which is embodied as having as few network
+    segments as possible that traffic has to traverse, to investing in high-performant devices with a dedicated chip set for the network function being performed.
+    </p>
+
+    <h2>How is Latency measured?</h2>
+
+    <p>
+    Latency can be measured in a variety of ways. Fortunately network protocols exist which provide functionality for sending a packet with the designation you
+    would like a response. Take the Internet Control Message Protocol (ICMP) for example. ICMP has many different types of
+    messages you can send, for instance, specified by a "Type" field in the ICMP header (part of a packet which specifies details of the associated protocol).
+    An ICMP packet with the "Type" set to "8" is an "Echo Request". When a device that is running ICMP receives an ICMP Type 8 packet (Echo Request), the
+    protocol specification and thereby code calls a function to craft and send an ICMP packet back to the sender with the Type field set to 0, which is also
+    known as an "Echo Reply".
+    </p>
+
+    <p>
+    This functionality built into ICMP has made it the protocol of choice for measuring round-trip latency between a source and destination. Unfortunately, due
+    to concern for performance and security reasons, ICMP is not enabled on every internet device. Forunately, we can use other protocols such as TCP, UDP, and SCTP.
+    </p>
+
+  <a href="index.html">Home</a>
+
+  </body>
 </html>
