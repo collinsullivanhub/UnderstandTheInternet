@@ -2,43 +2,43 @@
 <html>
 <body>
 
-<img src="latency.png" alt="latency_pic_here" width="868" height="180">
+<img src="latency.png" alt="latency_pic_here" width="500" height="333">
 
 <p>
-Although it may seem like magic, when you send data over a network from one point to another it is not instant.<br>
-This is because we are limited to the speed of light, roughly 300 million meters per second. While that is quite fast,<br>
-let's pretend we have a router in New York with an optical cable running perfectly to a router in London, which is a total<br>
-distance of ~5,567km. The fastest we could possibly send one byte from one point to the other is 18.5 ms due to the laws<br>
+Although it may seem like magic, when you send data over a network from one point to another it is not instant.
+This is because we are limited to the speed of light, roughly 300 million meters per second. While that is quite fast,
+let's pretend we have a router in New York with an optical cable running perfectly to a router in London, which is a total
+distance of ~5,567km. The fastest we could possibly send one byte from one point to the other is 18.5 ms due to the laws
 of physics.
 </p>
 <p>
-While this seems very fast (and it is compared to mailing a letter), we do not have perfect point to point links<br>
-between all devices, servers, and nodes on the internet. That would not only be physically very messy but logistically<br>
-impossible. For that reason, networks are broken up into various sub-networks controlled by different businesses/<br>
-organizations, governments, militaries, and even regular people who manage and connect their networks to each other.<br>
+While this seems very fast (and it is compared to mailing a letter), we do not have perfect point to point links
+between all devices, servers, and nodes on the internet. That would not only be physically very messy but logistically
+impossible. For that reason, networks are broken up into various sub-networks controlled by different businesses/
+organizations, governments, militaries, and even regular people who manage and connect their networks to each other.
 </p>
 
 <p>
-Since the design of peering multiple networks together was adopted, network traffic often passes through several<br>
-networks, called Autonomous Systems (more on this in the BGP section), to reach it's destination. Let's look at an example.<br>
+Since the design of peering multiple networks together was adopted, network traffic often passes through several
+networks, called Autonomous Systems (more on this in the BGP section), to reach it's destination. Let's look at an example!
 </p>
 <p>
 Example: Traffic to a SAAS Provider<br>
-<br>
-Let's say you are a lucky work-from-home user in Miami who needs to connect to your Google Drive folder online<br>
-to access a Powerpoint you just got told you have to present tomorrow... yay. The network path you will likely<br>
-take is out your local home modem/router to your service provider then either to a VPN endpoint configured by your<br>
-company or perhaps be split tunneled (bypass VPN) to go directly to the SAAS provider's AS. Note that by this point we<br>
-have likely already had our traffic routed to four or five different routers upstream (on the way to target). Once the<br>
-traffic enters Google's AS, you first hit a firewall which hands you off to a load balancer, then a front-end proxy server, which then<br>
-routes your request to the appropriate server cluster. All in all, you have likely traveled some 13-15 hops to your target.<br>
+
+Let's say you are a lucky work-from-home user in Miami who needs to connect to your Google Drive folder online
+to access a Powerpoint you just got told you have to present tomorrow... yay. The network path you will likely
+take is out your local home modem/router to your service provider then either to a VPN endpoint configured by your
+company or perhaps be split tunneled (bypass VPN) to go directly to the SAAS provider's AS. Note that by this point we
+have likely already had our traffic routed to four or five different routers upstream (on the way to target). Once the
+traffic enters Google's AS, you first hit a firewall which hands you off to a load balancer, then a front-end proxy server, which then
+routes your request to the appropriate server cluster. All in all, you have likely traveled some 13-15 hops to your target.
 But here's the catch, it also has to travel back to you!
 </p>
 <p>
-Each one of these routers and middleboxes (non routing devices your traffic passes through like a proxy for firewall, or<br>
-load balancer) takes some time to process your traffic and send it to the appropriate destination. This is known as processing<br>
-delay and queing delay. Traveling through all of these devices adds latency to your connection since your traffic has to<br>
-travel through them to your destination. For this reason, network operators try to design their networks to reduce latency<br>
+Each one of these routers and middleboxes (non routing devices your traffic passes through like a proxy for firewall, or
+load balancer) takes some time to process your traffic and send it to the appropriate destination. This is known as processing
+delay and queing delay. Traveling through all of these devices adds latency to your connection since your traffic has to
+travel through them to your destination. For this reason, network operators try to design their networks to reduce latency
 as much as possible.
 </p>
 
