@@ -3,28 +3,79 @@
 <head>
 
 <style>
-  .parent{
-    background-color: black;
-    height: 200px;
-    width: 200px;
-  }
-  .child{
-    background-color: black;
-    height: 25%;
-    width: 25%;
-    transition: transform 1s cubic-bezier(0.14, 0.17, 0.66, 0.64);
-  }
-  .parent:hover .child{
-    transform: translateX(100%);
-  }
+
+div {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  position: relative;
+  animation-name: example;
+  animation-duration: 4s;
+  animation-iteration-count: 3;
+  position: relative;
+  left: 50px;
+}
+
+.firsthop {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  position: relative;
+  left: 50px;
+}
+
+.secondhop {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  position: relative;
+  left: 50px;
+}
+
+.thirdhop {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  position: relative;
+  left: 50px;
+}
+
+.fourthhop {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  position: relative;
+  left: 50px;
+}
+
+.fifthhop {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  position: relative;
+  left: 50px;
+}
+
+@keyframes example {
+  0%   {left:0px; top:0px;}
+  25%  {left:50px; top:0px;}
+  50%  {left:100px; top:0px;}
+  75%  {left:150px; top:0px;}
+  100% {left:200px; top:0px;}
+}
+
 </style>
 
 </head>
 
 <body>
 <img src="latency.png" alt="latency_pic_here" width="800" height="220">
-<div class ="parent">
-  <div class = "child"></div>
+<div class ="firsthop">
+<div class ="secondhop">
+<div class ="thirdhop">
+<div class ="fourthhop">
+<div class ="fifthhop">
+<div></div>
 </div>
 <p>
 Although it may seem like magic, when you send data over a network from one point to another it is not instant.
