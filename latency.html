@@ -3,25 +3,19 @@
 <head>
 
 <style>
-<style>
-div {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-  position: relative;
-  animation-name: example;
-  animation-duration: 4s;
-  animation-direction: reverse;
-}
-
-@keyframes example {
-  0%   {background-color:red; left:0px; top:0px;}
-  25%  {background-color:yellow; left:200px; top:0px;}
-  50%  {background-color:blue; left:200px; top:200px;}
-  75%  {background-color:green; left:0px; top:200px;}
-  100% {background-color:red; left:0px; top:0px;}
-}
-</style>
+  .parent{
+    background-color: hsla(100%, 100%, 0.5);
+    height: 200px;
+    width: 200px;
+  }
+  .child{
+    background-color: black;
+    height: 50%;
+    width: 50%;
+  }
+  .parent:hover .child{
+    transform: translateX(100%);
+  }
 </style>
 
 </head>
@@ -66,7 +60,9 @@ travel through them to your destination. For this reason, network operators try 
 as much as possible.
 </p>
 
-<div></div>
+<div class ="parent">
+  <div class = "child"></div>
+</div>
 
 </body>
 </html>
