@@ -27,8 +27,9 @@
 Although it may seem like magic, when you send data over a network from one point to another it is not instant.
 This is because we are limited to the speed of light, roughly 300 million meters per second. While that is quite fast,
 let's pretend we have a router in New York with an optical cable running perfectly to a router in London, which is a total
-distance of ~5,567km. The fastest we could possibly send one byte from one point to the other is 18.5 ms due to the laws
-of physics.
+distance of ~5,567km. The fastest one bit of data in New York, manifested in reality most commonly as light sent through optical fiber,
+can travel to the receiving photodiode (diode which produces current which is converted into voltage with a transimpedense amflifer, and then binary)
+ of the optic in London is 18.5 ms due to the laws of physics.
 </p>
 <p>
 While this seems very fast (and it is compared to mailing a letter), we do not have perfect point to point links
@@ -60,25 +61,12 @@ associated latency, jitter, delay, etc. as all the same thing. Network slang has
 "lag" and "In reality,
 </p>
 <p>
-Each one of these routers and middleboxes (non routing devices your traffic passes through like a proxy for firewall, or
-load balancer) takes some time to process your traffic and send it to the appropriate destination. This is known as processing
-delay and queing delay. Traveling through all of these devices adds latency to your connection since your traffic has to
-travel through them to your destination. For this reason, network operators try to design their networks to reduce latency
-as much as possible.
+Each hop/device takes some time to process your traffic and send it to the appropriate destination. This is known as processing
+delay and queing delay. This constributes to the total one-way. For this reason, network operators try to design their networks to
+reduce latency as much as possible which is embodied as having as few network segments as possible that traffic has to traverse, to
+investing in high-performant devices with a dedicated chip set for the network function being performed.
 </p>
-<p></p>
-<p></p>
-<div class ="parent">
-  <div class = "child"></div>
-</div>
-<div class ="parent">
-  <div class = "child"></div>
-</div>
-<div class ="parent">
-  <div class = "child"></div>
-</div>
-<p>
-Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+
 </p>
 </body>
 </html>
