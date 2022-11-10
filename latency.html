@@ -2,27 +2,11 @@
 <html>
 <head>
 
-<style>
-  .parent{
-    background-color: hsla(100%, 100%, 0.5);
-    height: 200px;
-    width: 3000px;
-  }
-  .child{
-    background-color: black;
-    height: 25%;
-    width: 25%;
-    transition: transform 1s cubic-bezier(0.14, 0.17, 0.66, 0.64);
-  }
-  .parent:hover .child{
-    transform: translateX(100%);
-  }
-</style>
-
 </head>
 
 <body>
 <img src="latency.png" alt="latency_pic_here" width="800" height="220">
+<h2>Introduction to Latency</h2>
 <p>
 Although it may seem like magic, when you send data over a network from one point to another it is not instant.
 This is because we are limited to the speed of light, roughly 300 million meters per second. While that is quite fast,
@@ -34,7 +18,7 @@ can travel to the receiving photodiode (diode which produces current which is co
 <p>
 While this seems very fast (and it is compared to mailing a letter), we do not have perfect point to point links
 between all devices, servers, and nodes on the internet. That would not only be physically very messy but logistically
-impossible. For that reason, networks are broken up into various sub-networks controlled by different businesses/
+impossible. For that reason, the internet is broken up into various sub-networks controlled by different businesses/
 organizations, governments, militaries, and even regular people who manage and connect their networks to each other.
 </p>
 
