@@ -91,6 +91,27 @@
     and their destination takes time to process the traffic, determine the destination, and then forward it out the approrpriate interface. Even if this takes an additional 250 microseconds
     per hop, that is still additional latency incurred. Both dedicated FPGAs and ASICs in networking devices and optical technologies have made significant advancements and will certainly continue to do so over time.
     </p>
+
+    <h2>Understanding a Traceroute</h2>
+    <p>
+    Traceroute is a common tool used by network engineers to retrieve round trip times, diagnose latency and loss both to their target and upstream hops,
+    and benchmark performance. In your terminal,  if you simply type 'traceroute 8.8.8.8 (One of Google's Public DNS Servers)' you will see something like the following:
+    </p>
+    <p>
+    traceroute to 8.8.8.8 (8.8.8.8), 64 hops max, 52 byte packets<br>
+    1  router (10.10.29.1)  85.052 ms  2.168 ms  2.160 ms<br>
+    3  173.219.222.228 (173.219.222.228)  111.264 ms  13.597 ms  11.624 ms<br>
+    4  173.219.251.218 (173.219.251.218)  44.163 ms  20.716 ms  21.334 ms<br>
+    5  142.250.166.156 (142.250.166.156)  71.101 ms  20.346 ms  23.032 ms<br>
+    6  * * *<br>
+    7  142.251.70.104 (142.251.70.104)  79.207 ms<br>
+       dns.google (8.8.8.8)  75.947 ms  22.424 ms<br>
+    </p>
+    
+
+
+
+
   <a href="index.html">Home</a>
   </body>
 </html>
