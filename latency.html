@@ -47,21 +47,21 @@
     have likely already had our traffic routed through four or five different service providers upstream (on the way to target server). Once the
     traffic enters Microsoft's AS (Autonomous System), you likely will first hit a security device or two (Firewall, IDS/IPS), which will hand you off to a load balancer, then a front-end proxy server, which then
     routes your request to the appropriate web server. All in all, you have likely traveled some 13-15 "hops", which is just slang for separate network segment,
-    to your target. But here's the catch, it also has to travel back to you!
+    to your target. But here's the catch... it also has to travel back to you!
     </p>
 
     <h2>One-Way vs Round-Trip Latency</h2>
 
     <p>
     Commonly, network operators, enthusiats, deliquents, and administrators misuse the term latency. Before I understood networking, I always
-    associated latency, jitter, delay, etc. as all the same thing. Latency explicitly means the time spent sending data from one hop to another,
+    associated latency, jitter, delay, lag, etc. as all the same thing: <i>slowness</i>. Latency explicitly means the time spent sending data from one hop to another,
     whether that be one or fifty hops away. The total time for the traffic to travel from the source to the destination is known as one-way latency.
     Therefore, the time it takes for network traffic to be sent to the target and receive a reply is the Round-Trip Latency.
     </p>
 
     <p>
     In our example above, each device the traffic passes through takes time, be it milliseconds or microseconds, to process your traffic
-    and send it to the appropriate destination. This is known as processing delay and queing delay. This constitutes to the total one-way latency value.
+    and send it to the appropriate destination. This is known as processing delay and queing delay. This contributes to the total one-way latency value.
     For this reason, network operators try to design their networks to reduce latency as much as possible which is embodied as having as few network
     segments as possible that traffic has to traverse, to investing in high-performant devices with a dedicated chip set for the network function being performed.
     </p>
@@ -70,11 +70,12 @@
 
     <p>
     Latency can be measured in a variety of ways. Fortunately network protocols exist which provide functionality for sending a packet with the designation you
-    would like a response. Take the Internet Control Message Protocol (ICMP) for example. ICMP has many different types of
-    messages you can send, for instance, specified by a "Type" field in the ICMP header (part of a packet which specifies details of the associated protocol).
+    would like a response. So, just simply measuring the time from sending the first packet to receiving the response will allow you to calculate the time.
+     The Internet Control Message Protocol (ICMP) is the most common protocol used for this exercise. ICMP has many different types of
+    messages you can send specified by a "Type" field in the ICMP header (part of a packet which specifies details of the associated protocol).
     An ICMP packet with the "Type" set to "8" is an "Echo Request". When a device that is running ICMP receives an ICMP Type 8 packet (Echo Request), the
-    protocol specification and thereby code calls a function to craft and send an ICMP packet back to the sender with the Type field set to 0, which is also
-    known as an "Echo Reply".
+    protocol specification (code) and calls a function to craft and send an ICMP packet back to the sender with the Type field set to 0, which is also
+    known as an "Echo Reply". So, if we measure the time from the Echo Request sent to the time we receive a reply, we can calulate the total round trip latency.
     </p>
 
     <p>
