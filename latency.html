@@ -15,13 +15,10 @@
     color: lightseagreen;
     font-family: Gilroy,sans-serif;
   }
-
 </style>
 
   <body>
-
     <h2>Introduction to Latency</h2>
-
     <p>
     Although it may seem like magic, when you send data over a network from one point to another it is not instant.
     This is because we are limited to the speed of light, roughly 300 million meters per second. While that is quite fast,
@@ -38,14 +35,11 @@
     organizations, governments, militaries, and even single individuals who manage and connect their networks to each other,
     often through service providers or various infrastructure providers.
     </p>
-
     <p>
     Since the design of peering multiple networks together was adopted, network traffic often passes through several
     networks, called Autonomous Systems (more on this in the BGP section), to reach it's destination. Let's look at an example!
     </p>
-
     <p><i>Example: Traffic to a SAAS Application</i></p>
-
     <p>
     Let's say you are a lucky work-from-home user in Tampa who needs to connect to your Microsoft Sharepoint folder online
     to access a Powerpoint you just got told you have to present tomorrow... yay. The network path you will likely
@@ -94,11 +88,8 @@
     Latency has traditionally been "combated" by improving hardware and reducing distance to a destination. Having resources located physically closer to end users that need to access them. For this reason, content delivery networks (CDNs)
     have been invented to cache content that users are trying to access to reduce the amount of hops, and therefore latency, that is incurred. Every hop in between a user
     and their destination takes time to process the traffic, determine the destination, and then forward it out the approrpriate interface. Even if this takes an additional 250 microseconds
-    per hop, that is still additional latency incurred. Both DPDUs in devices and optics have made significant advancements and will certainly continue to do so over time.
+    per hop, that is still additional latency incurred. Both dedicated FPGAs and ASICs in networking devices and optical technologies have made significant advancements and will certainly continue to do so over time.
     </p>
-
-
   <a href="index.html">Home</a>
-
   </body>
 </html>
