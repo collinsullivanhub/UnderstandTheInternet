@@ -107,9 +107,28 @@
     7  142.251.70.104 (142.251.70.104)  79.207 ms<br>
        dns.google (8.8.8.8)  75.947 ms  22.424 ms<br>
     </p>
-
-
-
+    <p>
+    Traceroute uses UDP by default on Linux/Unix systems and ICMP on Windows systems. This can be altered, however, by simply specifying the "-P" option
+    before typing the IP address in the command followed by the desired protocol (<i>Example:</i> traceroute -P TCP 8.8.8.8 <i>or</i> traceroute -P ICMP 8.8.8.8).
+    </p>
+    <p>
+    When we examine the traceoute above, we note that there is first a number, starting with "1", on the left hand side. This represents the number of nodes,
+    or hops, that are traversed to the final target. So, in this example, there are 7 hops between our device and the target (8.8.8.8). Each hop will have three
+    integer values (often in milliseconds) to the right of the IP address. These represent three separate measurements of round trip time from our source device
+    to that particular hop.
+    </p>
+    <p>
+    If we look at hop 6, we notice no information and just three "*" listed instead. Why is this? If a device does not support, or is explicitly configured, to
+    not send a response packet of the protocol we are using, we will have no round-trip data and we will simply see a "*" displayed instead. Since traceroute sends
+    three probes by default, we see three "*" displayed. In modern networks, typically it is not uncommon for certain "flavors" of service or infrastructure providers
+    to explicity configure their devices to not respond to probes, as it is additional overhead that the device control planes will have to incur as well as posing a
+    security risk as often these protols have been misused by bad-actors for certain attacks like a denial of service.
+    </p>
+    <p>
+    Generally I have noticed that ICMP tends to have the most success as a probing protocol to retrieve round time data, but this can be misleading if trying to
+    understand performance for application traffic as that is likely using TCP as a transport protocol.
+    </p>
+    <h2>What can we observe from this data?</h2>
 
 
   <a href="index.html">Home</a>
