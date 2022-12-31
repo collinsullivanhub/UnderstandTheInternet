@@ -15,7 +15,7 @@
     color: lightseagreen;
     font-family: Gilroy,sans-serif;
   }
-  
+
 </style>
 
   <body>
@@ -49,8 +49,7 @@
     <p>
     Let's say you are a lucky work-from-home user in Tampa who needs to connect to your Microsoft Sharepoint folder online
     to access a Powerpoint you just got told you have to present tomorrow... yay. The network path you will likely
-    take is out your local home modem/router to your service provider, across any upsteam providers (perhaps to a VPN endpoint configured by your
-    company or perhaps be split tunneled, bypassing the VPN), and finally into the Autonomous System hosting the application web server. Note that by this point we
+    take is out your local home modem/router to your local broadband provider, across upstream service providers, and finally into the Autonomous System hosting the application web server. Note that by this point we
     have likely already had our traffic routed through four or five different service providers upstream (on the way to target server). Once the
     traffic enters Microsoft's AS (Autonomous System), you likely will first hit a security device or two (Firewall, IDS/IPS), which will hand you off to a load balancer, then a front-end proxy server, which then
     routes your request to the appropriate web server. All in all, you have likely traveled some 13-15 "hops", which is just slang for separate network segment,
