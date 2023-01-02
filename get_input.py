@@ -1,5 +1,4 @@
 import json
-import requests
 
 def get_input(*args, **kwargs):
     text = Element('test-input').element.value
