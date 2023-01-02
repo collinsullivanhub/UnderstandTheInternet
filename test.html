@@ -26,14 +26,13 @@
 <button id="submit-button" type="submit" pys-onClick="get_input">OK</button>
 
 <py-script>
+import json
 import requests
 
 def get_input(*args, **kwargs):
     text = Element('test-input').element.value
     print(text)
 
-if __name__ == "__main__":
-  get_input()
 </py-script>
 
 <p>Menu:</p>
