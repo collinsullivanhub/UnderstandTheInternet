@@ -22,16 +22,17 @@
 </py-config>
 
 <py-script>
-import json
-import requests
+  import json
+  import requests
 
-def get_input():
-  email_user_input = input("Please enter your email: ")
-  token = input("Please enter your API Token: ")
+  def get_input():
+      email_user_input = input("Please enter your email: ")
+      token = input("Please enter your API Token: ")
+      print(f"{email_user_input} - {token}")
 
 
-if __name__ == "__main__":
-    get_input()
+    if __name__ == "__main__":
+      get_input()
 </py-script>
 
 <p>Menu:</p>
