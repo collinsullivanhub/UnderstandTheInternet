@@ -11,6 +11,7 @@
     color: darkseagreen;
     font-family: Gilroy,sans-serif;
   }
+
   h2 {
     color: ivory;
     font-family: Gilroy,sans-serif;
@@ -126,9 +127,46 @@
     </p>
     <p>
     Generally I have noticed that ICMP tends to have the most success as a probing protocol to retrieve round time data, but this can be misleading if trying to
-    understand performance for application traffic as that is likely using TCP as a transport protocol.
+    understand performance for application traffic as that is likely using TCP as a transport protocol. TCP traffic generally will be handled differently in networks
+    as it will traverse through load balancers, firewalls, and other middleboxes which have policy configurations.
     </p>
-    <h2>What can we observe from this data?</h2>
+    <h2>What can we observe from Traceroute data?</h2>
+    <p>
+    Let's take a look at another traceroute to a domain with the "-A" option applied so we can see which Autonomous Systems are associated with the IP Addresses: <br>
+    1  [AS0] router (10.10.29.1)  105.796 ms  2.496 ms  2.152 ms<br>
+    2  * * *<br>
+    3  [AS19108] 173.219.222.228 (173.219.222.228)  11.767 ms  13.645 ms  10.805 ms<br>
+    4  [AS19108] 173.219.251.214 (173.219.251.214)  19.969 ms<br>
+       [AS19108] 173.219.251.218 (173.219.251.218)  22.706 ms  19.738 ms<br>
+    5  [AS3356] ae78.edge9.sanjose1.level3.net (4.16.205.33)  116.048 ms  23.474 ms  21.092 ms<br>
+    6  * * *<br>
+    7  [AS3356] 4.59.55.2 (4.59.55.2)  94.498 ms  63.798 ms  27.342 ms<br>
+    8  [AS35994] ae3.ctl-lax8.netarch.akamai.com (23.203.155.195)  75.960 ms  32.775 ms  36.179 ms<br>
+    9  [AS6453] a72-247-112-247.deploy.static.akamaitechnologies.com (72.247.112.247)  87.220 ms  29.271 ms  28.308 ms<br>
+    <br>
+    If we look at the first hop, we see [AS0]. This is because our first hop is an internal IP address of our home router. The next two hops are in AS19108. This AS Number is
+    assigned to Suddenlink, our broadband provider. We see that the average response times of those hops in AS19108 is ~18ms, which is quite healthy. We notice something curious,
+    however, on hop 4. We see two IP addresses, "173.219.251.214" and "173.219.251.218". Why is this? Well, in many networks, especially service provider networks, devices
+    are redundant to ensure statbility and SLAs. For this reason, traffic may often take alternative paths due to what is called ECMP (Equal-Cost Multipath Routing). ECMP
+    is simply a routing setup, or design, where traffic is load balanced over different paths with equal metrics.<br>
+    If we look at hop 4, we see that one of the three ICMP packets traversed 173.219.251.214, while two of the three packets traversed 173.219.251.218. We know this because
+    we see one millisecond round trip value for .214 vs two round trip values for .218.
+    </p>
+    <p>
+    If we look at hop 5, we see the IP address "4.16.205.33". We also see "ae78.edge9.sanjose1.level3.net" before the IP address. This is called a pointer record (PTR record). We
+    will cover this in the DNS section, but it is simply a domain mapping assigned to that IP address. There are a lot of good details one can observe from PTR records. In this
+    instance, we can observe the following details:<br>
+    ae78: Could mean "area edge", "addressable entity", etc.<br>
+    edge9: Edge router 9<br>
+    sanjose1: Location of edge router<br>
+    level3: Provider network. This device is operated by L3<br>
+    </p>
+    <p>
+    So, we know some more interesting details about hop 5 in our traceroute! If we move to hop 6, we see this device likely has ICMP disabled or is configured not
+    to send ICMP Echo Replies. We see hop 7 is also in AS3356 (L3), so we know our traffic is still in L3's network. If we look at hop 8, we see another pointer record,
+    "ae3.ctl-lax8.netarch.akamai.com". Akamai is a CDN service, so we now know that our target site is CDN-fronted, and hosted on the following device (hop 9):
+    a72-247-112-247.deploy.static.akamaitechnologies.com. 
+    </p>
 
 
   <a href="index.html">Home</a>
