@@ -18,36 +18,20 @@
 </style>
 
 <py-config>
-  packages = ["dnsdumpster"]
+  packages = ["requests"]
 </py-config>
 
 <py-script>
-import json
-import requests
-from dnsdumpster.DNSDumpsterAPI import DNSDumpsterAPI
+  import json
+  import requests
 
-def get_dumpster_results(user_input):
-  vpn_list = []
-  api_list = []
-  print(f"[*] Populating results for: {user_input}")
-  res = DNSDumpsterAPI(True).search(f'{user_input}')
-  dns_results = res['dns_records']['dns']
-  host_results = res['dns_records']['host']
-  print("Authoritative Servers")
-  for result in dns_results:
-      domain = result['domain']
-      ip = result['ip']
-      print(colored(f'{domain}', 'yellow'), colored(f'{ip}', 'white'))
-  print("Host Records")
-  for result in host_results:
-      domain = result['domain']
-      ip = result['ip']
-      print(colored(f'{domain}', 'yellow'), colored(f'{ip}', 'white'))
-      domain_list.append(domain)
+  def get_input():
+      email_user_input = input("Please enter your email: ")
+      token = input("Please enter your API Token: ")
 
-if __name__ == "__main__":
-    user_input = input("Please enter target domain: ")
-    get_dumpster_results(user_input)
+
+    if __name__ == "__main__":
+      get_input()
 </py-script>
 
 <p>Menu:</p>
