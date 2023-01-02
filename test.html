@@ -21,18 +21,28 @@
   packages = ["requests"]
 </py-config>
 
+<div>Type an sample input here</div>
+<input type="text" id="test-input"/>
+<button id="submit-button" type="submit" pys-onClick="my_function">Ok</button>
+<div id="test-output"></div>
+
 <py-script>
-  import json
-  import requests
+from js import console
 
-  def get_input():
-      email_user_input = input("Please enter your email: ")
-      token = input("Please enter your API Token: ")
-      print(f"{email_user_input} - {token}")
+def my_function(*args, **kwargs):
 
+  #print('args:', args)
+  #print('kwargs:', kwargs)
 
-  if __name__ == "__main__":
-    get_input()
+  console.log(f'args: {args}')
+  console.log(f'kwargs: {kwargs}')
+
+  text = Element('test-input').element.value
+
+  #print('text:', text)
+  console.log(f'text: {text}')
+
+  Element('test-output').element.innerText = text
 </py-script>
 
 <p>Menu:</p>
