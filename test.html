@@ -18,13 +18,11 @@
 </style>
 
 <py-config>
-[[fetch]]
-files = ["./get_input.py"]
 </py-config>
 
 <div>Type an sample input here</div>
 <input type="text" id="test-input"/>
-<button id="submit-button" type="submit" >OK</button>
+<button id="submit-button" type="submit" py-click="get_input()">OK</button>
 
 <py-script src="./get_input.py">
 </py-script>
